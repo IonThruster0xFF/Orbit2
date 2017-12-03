@@ -9,6 +9,10 @@ public class ChunksManager : MonoBehaviour
 	/// </summary>
 	public ChunkCreator mChunkCreator;
 	/// <summary>
+	/// 视野大小（加载几倍视野范围内的区块）
+	/// </summary>
+	public int mVisualSize;
+	/// <summary>
 	/// 区块组件活动地图
 	/// </summary>
 	public Dictionary<Vector2Int, bool> mChunkMap=new Dictionary<Vector2Int, bool>();
@@ -20,6 +24,10 @@ public class ChunksManager : MonoBehaviour
 	/// 测试用对象
 	/// </summary>
 	public GameObject test;
+	/// <summary>
+	/// 区块ID值
+	/// </summary>
+	public int ChunkID = 0;
 	/// <summary>
 	/// 获取一个游戏对象当前所在的区块坐标
 	/// </summary>
@@ -52,6 +60,10 @@ public class ChunksManager : MonoBehaviour
 	/// </summary>
 	public Dictionary<Vector2Int,GameObject> mChunks = new Dictionary<Vector2Int, GameObject>();
 	/// <summary>
+	/// 区块ID对应的区块
+	/// </summary>
+	public Dictionary<int, GameObject> mChunksByID = new Dictionary<int, GameObject>();
+	/// <summary>
 	/// 获取一个chunk坐标的中心位置坐标
 	/// </summary>
 	/// <param name="pos"></param>
@@ -68,9 +80,10 @@ public class ChunksManager : MonoBehaviour
 	/// <returns></returns>
 	public Vector2Int[] GetChunksPosNeedLoad(GameObject obj)
 	{
-		Vector2Int[] needLoadChunkPos = new Vector2Int[9];
+		
 		int k = 0;
-		for (int i = -1; i < 2; i++)
+		Vector2Int[] needLoadChunkPos = new Vector2Int[9];
+		for (int i = -1; i <2; i++)
 		{
 			for (int j = -1; j < 2; j++)
 			{
@@ -111,6 +124,12 @@ public class ChunksManager : MonoBehaviour
 			if (newChunk != null)
 			{
 				mChunks.Add(pos,newChunk);
+				mChunksByID.Add(ChunkID, newChunk);
+				Chunk chunkComponent=newChunk.AddComponent<Chunk>();
+				chunkComponent.mChunkID = ChunkID;
+				chunkComponent.mChunkPos = pos;
+				ChunkID++;
+
 			}
 		}
 	}
