@@ -71,6 +71,10 @@
             fixed4 frag(v2f i) : SV_Target
             {
             	float4 oColor = tex2D(_MainTex, i.uv[2]);
+
+            	//防止rgb为0
+            	oColor.rgb += float3(0.0001f,0.0001f,0.0001f);
+
             	// 根据海平面高度, 以及高度图高度, 生成海洋和陆地
             	//1. 陆地
             	oColor.g += step(_Altitude,oColor.r)*(_Para1 + oColor.r-_Altitude);//第二个参数大于第一个参数返回1, 避免分支语句
