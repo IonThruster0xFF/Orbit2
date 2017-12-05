@@ -7,6 +7,7 @@
 {
     Properties 
     {
+    	_PlanetBrightness("Planet Brightness",Range(0.9,1.5)) = 1
     	_PlanetRadius("Planet Radius",Range(40,120)) = 40
         _MainTex ("Altitude Texture", 2D) = "white" {}
         _SandMaskTex("Sand Mask Texture", 2D) = "white"{}
@@ -46,6 +47,7 @@
             sampler2D _SandMaskTex;
             sampler2D _MaskTex;
 
+            float _PlanetBrightness;
             float _PlanetRadius;
 
             float _SeaAltitude;
@@ -144,7 +146,7 @@
             	//边缘变亮
             	oColor.rgb *= pow((2 - e),1.0f); 
 
-                return oColor;
+                return oColor*_PlanetBrightness;
             }
             ENDCG
         }

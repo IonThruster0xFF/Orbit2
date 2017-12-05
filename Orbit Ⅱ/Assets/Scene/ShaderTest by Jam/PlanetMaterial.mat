@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 7b9664275bc27d54d9691f632ee94708, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -80,11 +80,12 @@ Material:
     - _Para1: 0.317
     - _Para2: 0.523
     - _Parallax: 0.02
+    - _PlanetBrightness: 1.249
     - _PlanetRadius: 120
-    - _SandAmount: 0.962
+    - _SandAmount: 1.006
     - _SandBright: 0.558
     - _SandLevel: 0.17
-    - _SeaAltitude: 0.105
+    - _SeaAltitude: 0.143
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -94,6 +95,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LandColor: {r: 0.49946907, g: 0.63235295, b: 0.37197232, a: 1}
-    - _SandColor: {r: 0.63235295, g: 0.42135483, b: 0.19528547, a: 1}
-    - _WaterColor: {r: 0.58823526, g: 0.778499, b: 1, a: 1}
+    - _LandColor: {r: 0.46277893, g: 0.5735294, b: 0.2867647, a: 1}
+    - _SandColor: {r: 0.6102941, g: 0.5408468, b: 0.31412196, a: 1}
+    - _WaterColor: {r: 0.56206745, g: 0.6862785, b: 0.8308824, a: 1}
