@@ -99,7 +99,7 @@ public class Record
             folderName = this.name;
         if (this.name == null)
         {
-            Debug.Log("Record Name Still NULL");
+            Debug.Log("Record Name ( "+ name +" ) Is Repeated.");
         }
         return this.name;
     }

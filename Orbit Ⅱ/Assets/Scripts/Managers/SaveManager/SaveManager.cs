@@ -18,6 +18,17 @@ using System.IO;
 public abstract class SaveData 
 { 
 }
+/// <summary>
+/// 这个 CreatableSaveData 可以创建对应的对象并返回新建的对象
+/// </summary>
+[System.Serializable]
+public abstract class CreatableSaveData : SaveData
+{
+    /// <summary>
+    /// 通过SaveData创建对象
+    /// </summary>
+    public abstract T Create<T>(ID id);
+}
     
 namespace Manager
 {
@@ -53,7 +64,6 @@ namespace Manager
         /// </summary>
         public void SaveAtPath<T>(T saveData, string path)
         {
-            Debug.Log("Save At " + path);
             SaveUtility.Save(saveData, GetExtensionPath(path));
         }
         /// <summary>
@@ -61,7 +71,6 @@ namespace Manager
         /// </summary>
         public T LoadAtPath<T>(string path)
         {
-            Debug.Log("Load At " + path);
             return SaveUtility.Load<T>(GetExtensionPath(path));
         }
         /// <summary>
@@ -115,9 +124,11 @@ namespace Manager
         /// </summary>
         public void ExitRecord(bool saveRecord)
         {
-            Debug.Log("Exit Record " + currentRecord.name);
             if(saveRecord)
                 SaveCurrentRecord();
+
+            Debug.Log("Exit Record " + currentRecord.name);
+
             currentRecord = null;
         }
 
@@ -182,7 +193,9 @@ namespace Manager
         /// </summary>
         public void Load(ISaveable saveable, ID id) 
         {
-            if (!saveData.ContainsKey(id)) {
+            if (!saveData.ContainsKey(id)) 
+            {
+                Debug.Log("Fucking NULL ID" + id.ToString());
                 return;
             }
             saveable.fromSaveData(saveData[id]);

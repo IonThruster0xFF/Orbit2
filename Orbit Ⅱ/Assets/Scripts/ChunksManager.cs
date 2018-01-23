@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace sangChunk
+{
 public class ChunksManager : MonoBehaviour
 {
 	/// <summary>
@@ -173,4 +174,5 @@ public class ChunksManager : MonoBehaviour
 		RefreshChunk(GetChunksPosNeedLoad(test));//刷新test周围区块，判断并创造9个相邻区块中未加载的区块
 		SetChunkActive(test);//激活9个相邻区块，并且设置其余区块暂停活动
 	}
+}
 }

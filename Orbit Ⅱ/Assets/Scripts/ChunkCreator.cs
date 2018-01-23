@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+namespace sangChunk
+{
 /// <summary>
 /// 区块生成代码
 /// </summary>
@@ -24,3 +26,4 @@ public class ChunkCreator:MonoBehaviour
 			return gmobj;
 		}
 	}
+}

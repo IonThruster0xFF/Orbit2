@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// 重写 Equals 时要重写 GetHashCode , 保证 Dictionary 等的正确运行
+/// </summary>
+using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -6,17 +9,17 @@ public class ID
 {
     public static HashSet<ID> ids = new HashSet<ID>();  // all currently active IDs
 
-    public int id = -1;
+    public int idx = 0;
+    public int idy = 0;
     public string className;
     public string sceneName;
 
-    public void Init(MonoBehaviour obj) 
+    public void Init() 
     {
         // validate the data for this ID
         Debug.Assert(!string.IsNullOrEmpty(className), "className is empty");
         Debug.Assert(!string.IsNullOrEmpty(sceneName), "sceneName is empty");
         Debug.Assert(!ids.Contains(this), "ID already exists: " + this);
-        Debug.Assert(id >= 0, "id number should be >= zero: " + this);
         // add this ID to the list of all current IDs
         ids.Add(this);
     }
@@ -27,7 +30,7 @@ public class ID
     }
 
     public override string ToString() {
-        return "ID{sceneName: " + sceneName + ", className: " + className + ", id: " + id + "}";
+        return "ID{sceneName: " + sceneName + ", className: " + className + ", id: " + idx + ", " + idy + "}";
     }
 
     // Compare two IDs
@@ -38,7 +41,7 @@ public class ID
         if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) {
             return false;
         }
-        return left.id == right.id && left.className == right.className && left.sceneName == right.sceneName;
+        return left.idx == right.idx && left.idy == right.idy && left.className == right.className && left.sceneName == right.sceneName;
     }
 
     // Compare two IDs
@@ -65,7 +68,8 @@ public class ID
         { // Overflow is fine, just wrap
             int hash = (int) 2166136261;
             // Suitable nullity checks etc, of course :)
-            hash = (hash * 16777619) ^ id.GetHashCode();
+            hash = (hash * 16777619) ^ idx.GetHashCode();
+            hash = (hash * 16777619) ^ idy.GetHashCode();
             hash = (hash * 16777619) ^ className.GetHashCode();
             hash = (hash * 16777619) ^ sceneName.GetHashCode();
             return hash;

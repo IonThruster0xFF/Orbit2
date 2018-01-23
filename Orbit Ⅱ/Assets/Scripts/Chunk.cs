@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace sangChunk
+{
 public class Chunk : MonoBehaviour
 {
 	public int mChunkID;
@@ -10,4 +11,5 @@ public class Chunk : MonoBehaviour
 	{
 		mChunkID = id;
 	}
+}
 }
